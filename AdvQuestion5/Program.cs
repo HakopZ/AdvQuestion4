@@ -17,12 +17,7 @@ namespace AdvQuestion5
     public static class Program
     {
         static bool CheckFit(Rectangle rec1, Rectangle rec2) => rec1.X < rec2.X && rec1.Y < rec2.Y;
-        static int HowManyFit(List<Rectangle> envelopes)
-        {
-            envelopes.Sort((f1, f2) => f1.X == f2.X ? f1.Y.CompareTo(f2.Y) : f1.X.CompareTo(f2.X));
-
-            return 0;
-        }
+        
         //Memoized Solution(A little better than factorial, don't know O(?)
         static int HowManyFitNaiveish(List<Rectangle> envelopes)
         {
@@ -50,11 +45,10 @@ namespace AdvQuestion5
             return max;
 
         }
+
         //O(n^2) solution???
         public static int MaxEnvelopes(List<Rectangle> envelopes)
         {
-            if (envelopes.Count == 0) return 0;
-            if (envelopes.Count == 1) return 1;
             envelopes.Sort((f1, f2) => f1.X == f2.X ? f1.Y.CompareTo(f2.Y) : f1.X.CompareTo(f2.X));
             int[] d = new int[envelopes.Count];
             d[0] = 1;
@@ -72,7 +66,6 @@ namespace AdvQuestion5
                 }
             }
             return d.Max();
-
         }
 
         
